@@ -1,6 +1,6 @@
-# Pinduoduo Return and Refund Order Screenshot Generator
+# Return and Refund Order Screenshot Generator
 
-An online tool for generating Pinduoduo return and refund order screenshots. It helps users quickly generate realistic-looking return order screenshots, primarily for learning purposes.
+An online tool for generating return and refund order screenshots. It helps users quickly generate realistic-looking return order screenshots, primarily for learning purposes.
 
 > ⚠️ Disclaimer: This tool is for learning and communication purposes only. Do not use it for forgery or misleading others. The actual shipping information must be consistent with the real express information.
 
