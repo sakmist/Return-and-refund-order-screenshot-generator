@@ -1,5 +1,7 @@
 # Return and Refund Order Screenshot Generator
 
+[中文](https://github.com/sakmist/Return-and-refund-order-screenshot-generator/blob/main/README.md)
+
 An online tool for generating return and refund order screenshots. It helps users quickly generate realistic-looking return order screenshots, primarily for learning purposes.
 
 > ⚠️ Disclaimer: This tool is for learning and communication purposes only. Do not use it for forgery or misleading others. The actual shipping information must be consistent with the real express information.
