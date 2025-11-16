@@ -1,0 +1,77 @@
+{
+  "fields": [
+    {
+      "id": "data5",
+      "label": "收货人",
+      "inputType": "text",
+      "defaultValue": "男娘 13612346666",
+      "clipboardHelper": {
+        "addressFieldId": "data6",
+        "buttonText": "粘贴自动填"
+      }
+    },
+    {
+      "id": "data6",
+      "label": "收货地址",
+      "inputType": "text",
+      "defaultValue": "江苏省 苏州市 太仓市 杂鱼杂鱼辅路cs号男娘女装研究所伪娘园区"
+    },
+    {
+      "id": "data10",
+      "label": "手机时间",
+      "inputType": "time",
+      "defaultValue": "",
+      "useCurrentTime": true
+    }
+  ],
+  "layers": [
+    {
+      "id": "clock",
+      "type": "field",
+      "fieldId": "data10",
+      "tag": "span",
+      "class": "s-time",
+      "style": {
+        "position": "absolute",
+        "top": "21px",
+        "left": "22px"
+      }
+    },
+    {
+      "id": "receiver-address-layer",
+      "type": "field",
+      "fieldId": "data6",
+      "tag": "span",
+      "class": "text-xl",
+      "style": {
+        "position": "absolute",
+        "top": "470px",
+        "left": "130px",
+        "width": "331px",
+        "overflow": "hidden",
+        "height": "56px",
+        "font-size": "1.15rem",
+        "text-align": "right",
+        "font-weight": 600
+      }
+    },
+    {
+      "id": "receiver-name-layer",
+      "type": "field",
+      "fieldId": "data5",
+      "tag": "span",
+      "class": "text-xl",
+      "style": {
+        "position": "absolute",
+        "top": "525px",
+        "left": "130px",
+        "width": "331px",
+        "overflow": "hidden",
+        "height": "56px",
+        "font-size": "1.15rem",
+        "text-align": "right",
+        "font-weight": 600
+      }
+    }
+  ]
+}
