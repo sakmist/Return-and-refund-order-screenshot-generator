@@ -4,7 +4,7 @@
       "id": "data5",
       "label": "收货人",
       "inputType": "text",
-      "defaultValue": "男娘 13612346666",
+      "defaultValue": "张三 13612346666",
       "clipboardHelper": {
         "addressFieldId": "data6",
         "buttonText": "粘贴自动填"
@@ -14,7 +14,7 @@
       "id": "data6",
       "label": "收货地址",
       "inputType": "text",
-      "defaultValue": "江苏省 苏州市 太仓市 杂鱼杂鱼辅路cs号男娘女装研究所伪娘园区"
+      "defaultValue": "江苏省 苏州市 太仓市 南京北京上海地方南京北京上海地方南京北京上海地方"
     },
     {
       "id": "data10",

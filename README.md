@@ -16,12 +16,18 @@
 
 ## 使用方法
 
-1. 打开 `return.html` 文件（推荐使用现代浏览器如 Chrome/Firefox）
-2. 在右侧表单中填写相关信息：
+```bash
+npm install
+npm run dev
+```
+
+打开终端提示的本地地址（默认 http://localhost:5173），然后：
+
+1. 在右侧表单中填写相关信息：
    - 收货人（包括姓名和电话）
    - 收货地址
-3. 点击「生成截图」按钮
-4. 浏览器会自动下载生成的截图
+2. 点击「生成截图」按钮
+3. 浏览器会自动下载生成的截图
 
 ### 自动填充功能
 
@@ -35,21 +41,53 @@
 
 ## 技术实现
 
-- 使用 Vue.js 构建界面交互
-- 使用 html2canvas 实现网页截图功能
+- Vue 3（`<script setup>` 单文件组件 + 组合式函数）
+- Vite 构建，Tailwind CSS 处理样式
+- 使用 modern-screenshot（SVG foreignObject）实现网页截图功能，由浏览器栅格化真实 DOM，文字位置与预览一致
 - 配置化字段和图层显示
-- 支持响应式布局
+
+## 项目结构
+
+```
+index.html                  # Vite 入口
+public/config.json          # 运行时配置（字段与图层）
+src/
+  main.js                   # 应用入口
+  App.vue                   # 页面布局与状态编排
+  style.css                 # Tailwind 指令与自定义样式
+  components/
+    PreviewScreen.vue       # 截图区域容器
+    LayerNode.vue           # 递归渲染图层（支持分组嵌套）
+    ControlPanel.vue        # 右侧操作区
+    ConfigField.vue         # 单个配置字段输入
+  composables/
+    useOrderConfig.js       # 加载配置、维护表单值与图层文本
+    useScreenshot.js        # 截图与下载
+    useClipboardAutofill.js # 剪贴板解析自动填充
+  utils/
+    address.js              # 姓名/电话/地址文本解析
+    field.js                # 字段输入属性推导
+    time.js                 # 时间格式化
+  assets/                   # 字体与背景图（由 Vite 处理）
+```
 
 ## 配置说明
 
-项目通过 [config.json](config.json) 进行配置：
+项目通过 [public/config.json](public/config.json) 进行配置：
 
 - `fields`: 定义表单字段
 - `layers`: 定义截图中的图层元素及其样式
 
-## 本地运行
+`layers` 支持 `group` 类型并通过 `children` 嵌套子图层，文本为 `static` 时取自 `text` 字段，否则取自对应 `fieldId` 的表单值。
 
-只需在浏览器中打开 `return.html` 文件即可使用，无需额外服务器支持。
+## 构建与部署
+
+```bash
+npm run build     # 产物输出到 dist/
+npm run preview   # 本地预览构建产物
+```
+
+构建产物使用相对路径（`base: './'`），可直接部署到任意静态托管（包括子路径场景）。
 
 ## 注意事项
 

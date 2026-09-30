@@ -16,12 +16,18 @@ An online tool for generating return and refund order screenshots. It helps user
 
 ## How to Use
 
-1. Open the `return.html` file (recommended to use modern browsers like Chrome/Firefox)
-2. Fill in the relevant information in the form on the right:
+```bash
+npm install
+npm run dev
+```
+
+Open the local address printed in the terminal (http://localhost:5173 by default), then:
+
+1. Fill in the relevant information in the form on the right:
    - Recipient (including name and phone number)
    - Shipping address
-3. Click the "Generate Screenshot" button
-4. The browser will automatically download the generated screenshot
+2. Click the "Generate Screenshot" button
+3. The browser will automatically download the generated screenshot
 
 ### Auto-fill Feature
 
@@ -35,21 +41,53 @@ Shipping Address: Room 123, Some Building, Some Street, Chaoyang District, Beiji
 
 ## Technical Implementation
 
-- Built with Vue.js for interface interactions
-- Uses html2canvas for webpage screenshot functionality
+- Vue 3 (`<script setup>` single-file components with composables)
+- Vite for bundling, Tailwind CSS for styling
+- Uses modern-screenshot (SVG foreignObject) so the browser rasterizes the real DOM and text lands where the preview shows it
 - Configurable fields and layer display
-- Supports responsive layout
+
+## Project Structure
+
+```
+index.html                  # Vite entry
+public/config.json          # Runtime config (fields and layers)
+src/
+  main.js                   # App entry
+  App.vue                   # Layout and state orchestration
+  style.css                 # Tailwind directives and custom styles
+  components/
+    PreviewScreen.vue       # Screenshot stage container
+    LayerNode.vue           # Recursive layer renderer (nested groups)
+    ControlPanel.vue        # Sidebar controls
+    ConfigField.vue         # Single config field input
+  composables/
+    useOrderConfig.js       # Load config, hold form values and layer text
+    useScreenshot.js        # Capture and download
+    useClipboardAutofill.js # Clipboard parsing and autofill
+  utils/
+    address.js              # Name/phone/address text parsing
+    field.js                # Derive input attributes from a field
+    time.js                 # Time formatting
+  assets/                   # Fonts and background image (handled by Vite)
+```
 
 ## Configuration
 
-The project is configured via [config.json](config.json):
+The project is configured via [public/config.json](public/config.json):
 
 - `fields`: Defines form fields
 - `layers`: Defines layer elements and their styles in the screenshot
 
-## Local Execution
+`layers` supports the `group` type with nested `children`. A layer renders its `text` when `type` is `static`, otherwise it renders the form value of its `fieldId`.
 
-Simply open the `return.html` file in your browser to use it. No additional server support is required.
+## Build and Deploy
+
+```bash
+npm run build     # Output to dist/
+npm run preview   # Preview the production build locally
+```
+
+The build uses relative paths (`base: './'`), so it can be deployed to any static host, including sub-path hosting.
 
 ## Notes
 
